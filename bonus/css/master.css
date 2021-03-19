@@ -1,0 +1,162 @@
+/****************************************************************
+**  PROLEGOMENA
+*/
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+:root {
+	--realwhite: #fafafa;
+	--realwhite50: #fafafa80;
+	--white: #eaeaea;
+	--black: #3c3c3c;
+	--black50: #3c3c3c80;
+	--purple: #b91450;
+	--green: #00c864;
+}
+body {
+	font-family: 'Roboto', sans-serif;
+	background-color: var(--white);
+	color: var(--black);
+	/* font-size: 12px; */
+	/* min-width: 297px;  */
+}
+a {
+	text-decoration: none;
+	color: var(--black);
+}
+a:hover {
+	color: var(--purple);
+}
+
+/****************************************************************
+**  STRUCTURE
+*/
+
+/** WRAPPERS **/
+.viewport_container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100vh;
+}
+.card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	padding: 60px 0 60px;
+	color: var(--black);
+	border-radius: 5px;
+	background-color: var(--realwhite);
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.card.pre {
+	margin: 15px 15px 30px;
+	padding: 60px;
+}
+
+/** SLIDER **/
+.slider_box {
+	display: flex;
+	align-items: center;
+	position: relative;
+	/* border: 1px dashed green; */
+}
+.slider_box .images {
+	height: 50vh;						/* le dimensioni dell'immagine stanno qua */
+}
+.slider_box .images img {
+	height: 100%;
+}
+.slider_box .prev_icon,
+.slider_box .next_icon {
+	padding: 20px;
+	font-size: 3.5em;
+	cursor: pointer;
+	/* border: 1px dashed red; */
+}
+.slider_box .next_icon {
+	right: 0;
+}
+.slider_box .prev_icon {
+	left: 0;
+}
+.slider_box .prev_icon.over,
+.slider_box .next_icon.over {
+	color: var(--purple);
+}
+
+/** SLIDER BUTTONS **/
+.slider_box .over_prev_btn,
+.slider_box .over_next_btn {
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 50%;
+	cursor: pointer;
+	/* background-color: #00ccff80; */
+}
+.slider_box .over_prev_btn { 
+	left: 0;
+}
+.slider_box .over_next_btn { 
+	right: 0;
+}
+
+/** NAV **/
+.nav {
+	position: absolute;
+	left: 50%;
+	bottom: 80px;
+	transform: translateX(-50%);
+	background-color: var(--realwhite50);
+	border-radius: 10px;
+	padding: 1px 4px 0;
+}
+.nav i {
+	padding: 2px;
+	cursor: pointer;
+}
+.nav i.active {
+	color: var(--purple);
+}
+
+/** AUTOPLAY TOGGLE BUTTON **/
+.autoplay_btn {
+	position: absolute;
+	bottom: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 3px 8px;
+	border-radius: 8px;
+	border: 1px solid var(--black);
+	background-color: var(--black);
+	color: var(--realwhite);
+	cursor: pointer;
+	outline: none;
+}
+.autoplay_btn:hover {
+	background-color: var(--realwhite);
+	color: var(--black);
+}
+.autoplay_btn.is_on {
+	border: 1px solid var(--green);
+	background-color: var(--green);
+}
+.autoplay_btn.is_on:hover {
+	background-color: var(--realwhite);
+	color: var(--green);
+}
+
+/****************************************************************
+**  TEXTS
+*/
+
+.ms_txt_1 {
+	font-size: 1.2em;
+	font-weight: 700;
+}

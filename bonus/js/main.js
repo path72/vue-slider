@@ -34,17 +34,15 @@ var app = new Vue(
 			prevBtn: function() {
 				this.imgCounter -= 1;
 				if (this.imgCounter < 0) this.imgCounter = this.images.length-1;
-				// console.log(`prevBtn activated > imgCounter = ${this.imgCounter}`);
 			},
 			nextBtn: function() {
 				this.imgCounter += 1;
 				if (this.imgCounter > this.images.length-1) this.imgCounter = 0;
-				// console.log(`nextBtn activated > imgCounter = ${this.imgCounter}`);
 			},
 			// * ARROW KEY BUTTONS * //
 			arrowBtn: function(ev) {
-				if      (ev.keyCode == 37) { this.prevBtn(); }
-				else if (ev.keyCode == 39) { this.nextBtn(); }
+				if      (ev.keyCode == 37) this.prevBtn();
+				else if (ev.keyCode == 39) this.nextBtn();
 			},
 			// * NAV BUTTONS * //
 			// navBtn: function(ev) {
@@ -57,20 +55,18 @@ var app = new Vue(
 					this.autoPlayIntervalIsOn = setInterval(() => { this.nextBtn(); }, this.autoPlayIntervalTime);
 					this.autoPlayBtnText      = 'Stop autoplay';
 					this.autoPlayBtnClassIsOn = 'is_on';
-					// console.log('autoplay on');
 				}
 				else {
 					clearInterval(this.autoPlayIntervalIsOn);
 					this.autoPlayIntervalIsOn = false;
 					this.autoPlayBtnText      = 'Start autoplay';
 					this.autoPlayBtnClassIsOn = null;
-					// console.log('autoplay off');
 				}
 			},
 			// * VISUAL EFFECTS * //
-			prevBtnOver : function() { this.prevBtnOverFlag = true;  this.nextBtnOverFlag = false },
-			nextBtnOver : function() { this.prevBtnOverFlag = false; this.nextBtnOverFlag = true  },
-			btnLeave    : function() { this.prevBtnOverFlag = false; this.nextBtnOverFlag = false },
+			prevBtnOver: function() { this.prevBtnOverFlag = true;  this.nextBtnOverFlag = false },
+			nextBtnOver: function() { this.prevBtnOverFlag = false; this.nextBtnOverFlag = true  },
+			btnLeave   : function() { this.prevBtnOverFlag = false; this.nextBtnOverFlag = false },
 			// * OTHER STUFF * //
 			rndInt: function() {
 				return Math.floor(Math.random()*(this.images.length));

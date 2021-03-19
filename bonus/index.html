@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- *** [ FONTS ] *** -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+		<!-- *** [ FONT AWESOME ] *** -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+		<!-- *** [ MY CSS ] *** -->
+		<link rel="stylesheet" href="css/master.css">
+		<!-- *** [ JQUERY - Google CDN ] *** -->
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+		<!-- *** [ VUE.JS ] *** -->
+		<!-- development -->
+		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+		<!-- production -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->		
+		<!-- prototyping or learning purposes -->
+		<!-- <script src="https://unpkg.com/vue@next"></script> -->
+		<!-- Boolean slides -->
+		<!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+		<!-- *** [ MY JS - (jQuery doc ready) ] *** -->
+		<!-- <script type="text/javascript" src="js/main.js"></script> -->
+		<!-- *** *** -->
+		<link rel="shortcut icon" href="#">
+		<title>template</title>
+	</head>
+	<body>
+
+			<div id="root">
+			
+				<div class="viewport_container">
+
+					<div class="card">
+
+						<div class="slider_box">
+
+							<div class="prev_icon" :class="(prevBtnOverFlag) ? 'over' : null">
+								<i class="fas fa-angle-left"></i>
+							</div>
+							
+							<div class="images">
+								<img :src="pathToImages + images[imgCounter]" alt="">
+							</div>
+							
+							<div class="next_icon" :class="(nextBtnOverFlag) ? 'over' : null">
+								<i class="fas fa-angle-right"></i>
+							</div>
+							
+							<div class="over_prev_btn" @click="prevBtn" @mouseover="prevBtnOver" @mouseleave="btnLeave"></div>
+							<div class="over_next_btn" @click="nextBtn" @mouseover="nextBtnOver" @mouseleave="btnLeave"></div>
+
+						</div> <!-- slider_box -->
+						
+						<div class="nav">
+							<!-- <i v-for="(el,index) in images" :id="index" :class="(index == imgCounter) ? 'active fas' : 'far'" class="fa-circle" @click="navBtn"></i> -->
+							<!-- piu semplice! (ma... troppa logica nell'html?) -->
+							<i v-for="(el,index) in images" :class="(index == imgCounter) ? 'active fas' : 'far'" class="fa-circle" @click="imgCounter = index"></i>
+						</div>
+
+						<button class="autoplay_btn" :class="autoPlayBtnClassIsOn" @click="autoPlayBtn">{{autoPlayBtnText}}</button>
+						
+					</div>
+
+				</div> <!-- viewport_container -->
+
+			</div>
+
+
+		<!-- *** [ MY JS ] *** -->
+		<script type="text/javascript" src="js/main.js"></script>
+	</body>
+</html>
