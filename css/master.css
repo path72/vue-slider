@@ -64,7 +64,7 @@ a:hover {
 	/* border: 1px dashed green; */
 }
 .slider_box .images {
-	height: 60vh;						/* le dimensioni dell'immagine stanno qua */
+	height: 50vh;						/* le dimensioni dell'immagine stanno qua */
 }
 .slider_box .images img {
 	height: 100%;
@@ -123,12 +123,25 @@ a:hover {
 }
 
 /** AUTOPLAY TOGGLE BUTTON **/
-.autoplay_toggle_btn {
+.autoplay_btn {
 	position: absolute;
 	bottom: 20px;
 	left: 50%;
 	transform: translateX(-50%);
+	padding: 3px 8px;
+	border-radius: 8px;
+	border: 1px solid var(--black);
+	background-color: var(--black);
+	color: var(--realwhite);
+	cursor: pointer;
+	outline: none;
 }
+.autoplay_btn:hover {
+	border: 1px solid var(--black);
+	background-color: var(--realwhite);
+	color: var(--black);
+}
+
 
 /****************************************************************
 **  X

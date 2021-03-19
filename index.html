@@ -38,9 +38,9 @@
 		
 		[OK] Bonus1: Applicare l'autoplay allo slider: ogni 3 secondi, cambia immagine automaticamente.
 		
-		[  ] Bonus2: Introdurre l' evento click sui pallini e visualizzare immagine relativa.
+		[OK] Bonus2: Introdurre l' evento click sui pallini e visualizzare immagine relativa.
 		
-		Bonus3: spazio alla fantasia :wink:
+		[ ] Bonus3: spazio alla fantasia :wink:
 		
 		------------------------------------------->
 
@@ -70,10 +70,10 @@
 						</div> <!-- slider_box -->
 						
 						<div class="nav">
-							<i v-for="(el,index) in images" :class="(index == counter) ? 'active fas' : 'far'" class="fa-circle" @click="navBtn"></i>
+							<i v-for="(el,index) in images" :id="index" :class="(index == counter) ? 'active fas' : 'far'" class="fa-circle" @click="navBtn"></i>
 						</div>
 
-						<button class="autoplay_toggle_btn">Start autoplay</button>
+						<button class="autoplay_btn" @click="autoPlayBtn">{{autoPlayBtnText}}</button>
 						
 					</div>
 

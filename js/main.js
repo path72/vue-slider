@@ -5,6 +5,7 @@ var app = new Vue(
 	{
 		el: '#root',
 		data: {
+			// * sliding images * //
 			counter: 0,
 			pathToImages: 'img/',
 			images: [
@@ -19,37 +20,56 @@ var app = new Vue(
 				'wallpaperbetter.com_1024x768 (9).jpg',
 				'wallpaperbetter.com_1024x768 (10).jpg',
 			],
-			autoPlayIntervalTime: 4000,
+			// * buttons * //
 			prevBtnOverFlag: false,
 			nextBtnOverFlag: false,
+			// * autoplay * //
+			autoPlayIntervalTime: 3000,
+			autoplayOn: false,
+			autoPlayBtnText : 'Start autoplay',
 		},
 		methods: {
-			/** SLIDER BUTTONS **/
+			// * SLIDER BUTTONS * //
 			prevBtn: function() {
 				this.counter -= 1;
-				if(this.counter < 0) this.counter = this.images.length-1;
-				console.log(`counter = ${this.counter}`);
+				if (this.counter < 0) this.counter = this.images.length-1;
+				console.log(`prevBtn pressed > counter = ${this.counter}`);
 			},
 			nextBtn: function() {
 				this.counter += 1;
-				if(this.counter > this.images.length-1) this.counter = 0;
-				console.log(`counter = ${this.counter}`);
+				if (this.counter > this.images.length-1) this.counter = 0;
+				console.log(`nextBtn pressed > counter = ${this.counter}`);
 			},
-			/** ARROW KEY BUTTONS **/
+			// * ARROW KEY BUTTONS * //
 			arowBtn: function() {
 				// keyup
 				// if      (_ev.keyCode == 37) {  }
 				// else if (_ev.keyCode == 39) {  }
 			},
-			/** NAV BUTTONS **/
-			navBtn: function() {
-				console.log('navBtn clicked');
+			// * NAV BUTTONS * //
+			navBtn: function(ev) {
+				this.counter = parseInt(ev.target.id);				
+				console.log(`nav dot #${ev.target.id} clicked > counter = ${this.counter}`);
 			},
-			/** VISUAL EFFECTS **/
+			// * AUTOPLAY BUTTON * //
+			autoPlayBtn: function() {
+				if (!this.autoplayOn) {
+					this.autoplayOn = setInterval(() => { this.nextBtn(); }, this.autoPlayIntervalTime);
+					this.autoPlayBtnText = 'Stop autoplay';
+					console.log('autoplay on');
+				}
+				else {
+					clearInterval(this.autoplayOn);
+					this.autoplayOn = false;
+					this.autoPlayBtnText = 'Start autoplay';
+					console.log('autoplay off');
+				}
+			},
+			// * VISUAL EFFECTS * //
 			prevBtnOver : function() { this.prevBtnOverFlag = true;  this.nextBtnOverFlag = false },
 			nextBtnOver : function() { this.prevBtnOverFlag = false; this.nextBtnOverFlag = true  },
 			btnLeave    : function() { this.prevBtnOverFlag = false; this.nextBtnOverFlag = false },
-			/** OTHER METHODS **/
+			// * OTHER STUFF * //
 			rndInt: function() {
 				return Math.floor(Math.random()*(this.images.length));
 			}
@@ -59,7 +79,6 @@ var app = new Vue(
 			console.log(this);
 			this.counter = this.rndInt();
 			console.log(`counter = ${this.counter} (random start)`);
-			setInterval(() => { this.nextBtn(); }, this.autoPlayIntervalTime);
 		}
 	}
 );
@@ -70,12 +89,12 @@ var app = new Vue(
 //###################################################### 
 // DYNAMICS - jQuery
 
-$(function() {
-// ********************* doc ready start ***
+// $(function() {
+// // ********************* doc ready start ***
 
 
-// *********************** doc ready end ***
-});
+// // *********************** doc ready end ***
+// });
 
 //###################################################### 
 // FUNCTIONS
