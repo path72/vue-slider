@@ -29,21 +29,6 @@
 	</head>
 	<body>
 
-		<!------------------------------------------
-
-		Esercizio di oggi: Vue Slider
-		nome repo: vue-slider
-
-		[OK] Rifare l'esercizio dello slider come fatto assieme in classe.
-		
-		[OK] Bonus1: Applicare l'autoplay allo slider: ogni 3 secondi, cambia immagine automaticamente.
-		
-		[OK] Bonus2: Introdurre l' evento click sui pallini e visualizzare immagine relativa.
-		
-		[ ] Bonus3: spazio alla fantasia :wink:
-		
-		------------------------------------------->
-
 			<div id="root">
 			
 				<div class="viewport_container">
@@ -57,7 +42,7 @@
 							</div>
 							
 							<div class="images">
-								<img :src="pathToImages + images[counter]" alt="">
+								<img :src="pathToImages + images[imgCounter]" alt="">
 							</div>
 							
 							<div class="next_icon" :class="(nextBtnOverFlag) ? 'over' : null">
@@ -70,10 +55,12 @@
 						</div> <!-- slider_box -->
 						
 						<div class="nav">
-							<i v-for="(el,index) in images" :id="index" :class="(index == counter) ? 'active fas' : 'far'" class="fa-circle" @click="navBtn"></i>
+							<!-- <i v-for="(el,index) in images" :id="index" :class="(index == imgCounter) ? 'active fas' : 'far'" class="fa-circle" @click="navBtn"></i> -->
+							<!-- piu semplice -->
+							<i v-for="(el,index) in images" :id="index" :class="(index == imgCounter) ? 'active fas' : 'far'" class="fa-circle" @click="imgCounter = index"></i>
 						</div>
 
-						<button class="autoplay_btn" @click="autoPlayBtn">{{autoPlayBtnText}}</button>
+						<button class="autoplay_btn" :class="autoPlayBtnClassIsOn" @click="autoPlayBtn">{{autoPlayBtnText}}</button>
 						
 					</div>
 

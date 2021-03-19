@@ -5,8 +5,8 @@ var app = new Vue(
 	{
 		el: '#root',
 		data: {
-			// * sliding images * //
-			counter: 0,
+			// * SLIDING IMAGES * //
+			imgCounter: 0,
 			pathToImages: 'img/',
 			images: [
 				'wallpaperbetter.com_1024x768 (1).jpg',
@@ -20,49 +20,51 @@ var app = new Vue(
 				'wallpaperbetter.com_1024x768 (9).jpg',
 				'wallpaperbetter.com_1024x768 (10).jpg',
 			],
-			// * buttons * //
-			prevBtnOverFlag: false,
-			nextBtnOverFlag: false,
-			// * autoplay * //
+			// * AUTOPLAY * //
 			autoPlayIntervalTime: 3000,
-			autoplayOn: false,
-			autoPlayBtnText : 'Start autoplay',
+			autoPlayIntervalIsOn: false,
+			autoPlayBtnText     : 'Start autoplay',
+			autoPlayBtnClassIsOn: null,
+			// * VISUAL EFFECTS: PREV/NEXT BUTTON OVER * //
+			prevBtnOverFlag: false,
+			nextBtnOverFlag: false
 		},
 		methods: {
 			// * SLIDER BUTTONS * //
 			prevBtn: function() {
-				this.counter -= 1;
-				if (this.counter < 0) this.counter = this.images.length-1;
-				console.log(`prevBtn pressed > counter = ${this.counter}`);
+				this.imgCounter -= 1;
+				if (this.imgCounter < 0) this.imgCounter = this.images.length-1;
+				// console.log(`prevBtn activated > imgCounter = ${this.imgCounter}`);
 			},
 			nextBtn: function() {
-				this.counter += 1;
-				if (this.counter > this.images.length-1) this.counter = 0;
-				console.log(`nextBtn pressed > counter = ${this.counter}`);
+				this.imgCounter += 1;
+				if (this.imgCounter > this.images.length-1) this.imgCounter = 0;
+				// console.log(`nextBtn activated > imgCounter = ${this.imgCounter}`);
 			},
 			// * ARROW KEY BUTTONS * //
-			arowBtn: function() {
-				// keyup
-				// if      (_ev.keyCode == 37) {  }
-				// else if (_ev.keyCode == 39) {  }
+			arrowBtn: function(ev) {
+				if      (ev.keyCode == 37) { this.prevBtn(); }
+				else if (ev.keyCode == 39) { this.nextBtn(); }
 			},
 			// * NAV BUTTONS * //
-			navBtn: function(ev) {
-				this.counter = parseInt(ev.target.id);				
-				console.log(`nav dot #${ev.target.id} clicked > counter = ${this.counter}`);
-			},
-			// * AUTOPLAY BUTTON * //
+			// navBtn: function(ev) {
+			// 	this.imgCounter = parseInt(ev.target.id);			
+			// 	console.log(`nav dot #${ev.target.id} clicked > imgCounter = ${this.imgCounter}`);
+			// },
+			// * AUTOPLAY: TOGGLE BUTTON * //
 			autoPlayBtn: function() {
-				if (!this.autoplayOn) {
-					this.autoplayOn = setInterval(() => { this.nextBtn(); }, this.autoPlayIntervalTime);
-					this.autoPlayBtnText = 'Stop autoplay';
-					console.log('autoplay on');
+				if (!this.autoPlayIntervalIsOn) {
+					this.autoPlayIntervalIsOn = setInterval(() => { this.nextBtn(); }, this.autoPlayIntervalTime);
+					this.autoPlayBtnText      = 'Stop autoplay';
+					this.autoPlayBtnClassIsOn = 'is_on';
+					// console.log('autoplay on');
 				}
 				else {
-					clearInterval(this.autoplayOn);
-					this.autoplayOn = false;
-					this.autoPlayBtnText = 'Start autoplay';
-					console.log('autoplay off');
+					clearInterval(this.autoPlayIntervalIsOn);
+					this.autoPlayIntervalIsOn = false;
+					this.autoPlayBtnText      = 'Start autoplay';
+					this.autoPlayBtnClassIsOn = null;
+					// console.log('autoplay off');
 				}
 			},
 			// * VISUAL EFFECTS * //
@@ -74,28 +76,18 @@ var app = new Vue(
 				return Math.floor(Math.random()*(this.images.length));
 			}
 		},
+		// * VUE READY * //
 		created: function() {
+			// Vue infos
 			console.log('---- Vue() created ----');
 			console.log(this);
-			this.counter = this.rndInt();
-			console.log(`counter = ${this.counter} (random start)`);
+			// random default image
+			this.imgCounter = this.rndInt();
+			console.log(`imgCounter = ${this.imgCounter} (random start)`);
+			// arrow key listening
+			window.addEventListener('keydown', this.arrowBtn);
 		}
 	}
 );
-
 // Vue.config.devtools = true;
 // console.log(app);
-
-//###################################################### 
-// DYNAMICS - jQuery
-
-// $(function() {
-// // ********************* doc ready start ***
-
-
-// // *********************** doc ready end ***
-// });
-
-//###################################################### 
-// FUNCTIONS
-

@@ -137,11 +137,17 @@ a:hover {
 	outline: none;
 }
 .autoplay_btn:hover {
-	border: 1px solid var(--black);
 	background-color: var(--realwhite);
 	color: var(--black);
 }
-
+.autoplay_btn.is_on {
+	border: 1px solid var(--green);
+	background-color: var(--green);
+}
+.autoplay_btn.is_on:hover {
+	background-color: var(--realwhite);
+	color: var(--green);
+}
 
 /****************************************************************
 **  X
